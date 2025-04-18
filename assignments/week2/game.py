@@ -1,6 +1,6 @@
 import time
 
-print("Welcome to the game of life!")
+print("Welcome to the game of life! You will get to know how are you living.")
 time.sleep(1.5)
 
 print("Let's see how old you are...")
