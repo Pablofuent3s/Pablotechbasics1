@@ -1,6 +1,6 @@
 # This is the game of life!
 ## I always think about having a healthy lifestyle. This game can be a good reminder!
-
+## ChatGPT assisted me in understanding global variables and debugging various syntax mistakes (e.g: function structures)
 import time
 
 # Constants
@@ -8,10 +8,11 @@ MAX_AGE = 120
 MIN_AGE = 0
 MAX_SCREEN_TIME = 24
 
+# Creation of functions and time delays
 def pause(seconds=1.5):
     time.sleep(seconds)
-
-def get_valid_age() -> int:
+# age indexing with the restraints kept in mind
+def valid_age() -> int:
     while True:
         age_input = input("Enter your age: ")
         if age_input.isdigit():
@@ -22,8 +23,8 @@ def get_valid_age() -> int:
                 print(f"Please enter an age between {MIN_AGE} and {MAX_AGE}.")
         else:
             print("That's not a valid number.")
-
-def get_place() -> str:
+# Knowing where does the user live to choose between locations
+def location() -> str:
     place = input("Enter your place of living (by continent): ").lower()
     if place == "europe":
         print("The average life expectancy in Europe is 74 years for men and 81 for women!")
@@ -33,7 +34,8 @@ def get_place() -> str:
         print("I recommend you retire in Europe, Asia or Oceania, where life expectancy is higher.")
     return place
 
-def get_lifestyle() -> str:
+# You enter your lifestyle by thinking how active you are (how often you go make exercise)
+def lifestyle() -> str:
     lifestyle = input("Enter your type of lifestyle (rather sedentary or rather active): ").lower()
     if lifestyle == "rather sedentary":
         print("Why?")
@@ -45,8 +47,8 @@ def get_lifestyle() -> str:
     else:
         print("Hmm, I didn't understand that. Try typing 'rather sedentary' or 'rather active'.")
     return lifestyle
-
-def get_screen_time() -> float:
+# I try to use the phone as little as I can. My goal is to go under 2 hours a day at least once every week.
+def screen_time() -> float:
     while True:
         screentime_input = input("Enter your screentime in hours (e.g., 3.5): ")
         try:
@@ -61,28 +63,28 @@ def get_screen_time() -> float:
                 print(f"Please enter a number between 0 and {MAX_SCREEN_TIME}.")
         except ValueError:
             print("That's not a valid number.")
-
-def scene_summary(age, place, lifestyle, screentime):
+# summary of the past functions
+def summary(age, place, lifestyle, screentime):
     print(f"You are {age} years old, live in {place}, have a {lifestyle} lifestyle, and spend {screentime} hours on your phone daily.")
     pause(2)
     print("Thank you for playing! By having less time on your phone and a more active lifestyle, you can live your life to the fullest!")
-
+# running the main function
 def main():
     print("Welcome to the Game of Life! Let's see how you're living...")
     pause()
 
-    age = get_valid_age()
+    age_var = valid_age()
     pause()
 
-    place = get_place()
+    place_var = location()
     pause()
 
-    lifestyle = get_lifestyle()
+    lifestyle_var = lifestyle()
     pause()
 
-    screentime = get_screen_time()
+    screentime_var = screen_time()
     pause()
 
-    scene_summary(age, place, lifestyle, screentime)
+    summary(age_var, place_var, lifestyle_var, screentime_var)
 
 main()
