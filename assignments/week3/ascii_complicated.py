@@ -1,3 +1,6 @@
+# Taking on ASCII again, this time doing it with the random effect and coding variables that we saw
+## ChatGPT helped me debugging and setting up the printing results (line 21-27)
+# I start with the setups randomness and time to use time pauses and random outputs
 import random
 import time
 # inputs
