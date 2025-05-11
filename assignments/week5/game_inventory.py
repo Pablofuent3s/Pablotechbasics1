@@ -1,5 +1,5 @@
 # Watch what you eat!
-## this games treats inventory on as what do you have in your house and what you eat.
+## this games treats inventory as what do you have in your house and what you eat. Keep yourself healthy!
 ### AI Tool ChatGPT helped be debugging and understand my mistakes.
 
 
