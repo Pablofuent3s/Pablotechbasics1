@@ -7,9 +7,9 @@
 import time
 inventory = []
 items_in_room = [
-    {"name": " American Burger", "type": "food", "description": "Yummy, but a very big intake of calories. -10 health", "health": -10},
-    {"name": "Apple", "type": "food", "description": "Restores a small amount of health. +2 health", "health": +2},
-    {"name": "Chick peas", "type": "food", "description": "big intake of proteins. +4 health", "health": +4},
+    {"name": "American Burger", "type": "food", "description": "Yummy, but a very big intake of calories. -10 health", "health": -10},
+    {"name": "Fruits", "type": "food", "description": "Healthy and good!. +2 health", "health": +2},
+    {"name": "legumes", "type": "food", "description": "big intake of proteins. +4 health", "health": +4},
     {"name": "Pizza", "type": "food", "description":
         "A delicious pizza. Suitable for a special day of the week. -7 health", "health": -7},
     {"name": "Bread", "type": "food", "description": "A delicious bread. Suitable for breakfast. +1 health", "health": +1},
@@ -25,17 +25,19 @@ MAX_HEALTH = 100
 MIN_HEALTH = 0
 starting_health = 50
 WAITING_TIME = 1.5
+win_condition = 100
+lose_condition = 0
 health = starting_health
 
 # --- Functions ---
 
 def intro():
-    print("Welcome to the Healthy Inventory Game!")
+    print("Welcome to the Healthy Meal Game!")
     time.sleep(WAITING_TIME)
     print("Your goal is to reach 100 health by choosing healthy foods and drinks.")
     time.sleep(WAITING_TIME)
     print("Start by typing 'look' to see the available items.")
-    print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], quit")
+    print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], quit, check")
     time.sleep(WAITING_TIME)
     print(f"Starting health: {starting_health}")
 
@@ -94,6 +96,7 @@ def use(item_name):
             print(f"You used {item['name']}. {item['description']}")
             print(f"Current health: {health}")
             inventory.remove(item)
+            items_in_room.append(item)
             return
     print("You don't have that item in your inventory.")
 
@@ -111,32 +114,47 @@ def examine(item_name):
             if item["name"].lower() == item_name.lower():
                 print(f"{item['name']}: {item['description']}")
 
+def check_health():
+    global health
+    if health <= MIN_HEALTH:
+        print("You lost! Your health dropped to 0.")
+        return "lose"
+    elif health >= MAX_HEALTH:
+        print("Congratulations! You reached maximum health and won the game!")
+        return "win"
+    return "continue"
+
 # --- Game Loop ---
 
 def game_loop():
     print("Welcome to the Healthy Inventory Game!")
     print("Type 'help' for a list of commands.")
     intro()
+
     while True:
         command = input("\n> ").strip().lower()
+
         if command == "help":
             # You can also rename the commands according to your own needs
-            print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], quit")
+            print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], quit, check")
         elif command == "inventory":
             show_inventory()
         elif command == "look":
             show_room_items()
-            elif command.startswith("pickup "):
-            item_name = command[7:]
-            pick_up(item_name)
+        elif command.startswith("pickup "):
+            item_name = command[7:].strip()
+            pickup(item_name)
         elif command.startswith("drop "):
-            item_name = command[5:]
+            item_name = command[5:].strip()
             drop(item_name)
         elif command.startswith("use "):
-            item_name = command[4:]
+            item_name = command[4:].strip()
             use(item_name)
+            check = check_health()
+            if check in ["win", "lose"]:
+                break
         elif command.startswith("examine "):
-            item_name = command[8:]
+            item_name = command[8:].strip()
             examine(item_name)
         elif command == "quit":
             print("Thanks for playing!")
@@ -146,3 +164,4 @@ def game_loop():
 
 if __name__ == "__main__":
     game_loop()
+
