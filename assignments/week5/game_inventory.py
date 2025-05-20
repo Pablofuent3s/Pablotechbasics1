@@ -101,18 +101,11 @@ def use(item_name):
     print("You don't have that item in your inventory.")
 
 def examine(item_name):
-    # you can only examine an item if it's in your inventory or if it is in the room
-    examine("item_name")
-    if not inventory:
-        for item in items_in_room:
-            if item["name"].lower() == item_name.lower():
-                print(f"{item['name']}: {item['description']}")
-                return
-        print("Item not found in inventory or room.")
-    if inventory:
-        for item in inventory:
-            if item["name"].lower() == item_name.lower():
-                print(f"{item['name']}: {item['description']}")
+    description = inventory.get(item_name.lower())
+    if description:
+        print(f"{item_name.capitalize()}: {description}")
+    else:
+        print(f"You don't have an item called '{item_name}'.")
 
 def check_health():
     global health
