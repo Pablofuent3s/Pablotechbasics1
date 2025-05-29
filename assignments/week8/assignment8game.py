@@ -1,6 +1,6 @@
 # Can you see John Cena?
 # I wanted to use the famous WWE fighter John Cena with his slogan "You can´t see me" that´s why the image must go fast
-
+# AI Tool chatGPT helped me in understanding the change from procedural to OOP and the structure that was provided
 import pygame
 
 # Constants
