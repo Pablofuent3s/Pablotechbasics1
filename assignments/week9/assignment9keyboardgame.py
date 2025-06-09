@@ -1,10 +1,10 @@
-#For this week´s assignment i wanted to make a maze game
-#AI Tool Gemini helped me sort out the maze walls as I was struggling to make them make sense
+#For this week´s assignment I wanted to make a maze game
+#AI Tool Gemini helped me sort out the maze walls as I was struggling to make them make sense, refactoring Class Game and Cell.
+#As the walls and wall logic was a big part of the code, it had to be refactored for it to be a playable game.
 import pygame
 import random
 import sys
 
-# Initialize Pygame
 pygame.init()
 
 # Window settings
@@ -293,4 +293,5 @@ class Game:
 if __name__ == "__main__":
     game = Game()
     game.run()
+
 # use the keys up, down, left and right to get the blue cube to meet the green cube!
