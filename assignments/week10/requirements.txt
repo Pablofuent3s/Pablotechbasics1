@@ -1,0 +1,3 @@
+# the libraries and versions I want you to install to run the code
+cowsay == 6.1
+pyjokes == 0.8.3
