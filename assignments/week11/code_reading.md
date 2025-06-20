@@ -24,7 +24,8 @@ def load_image(file):
 - File and surface. The coder is setting the foundation to load images into the game. He´s also managing error functions.
 - *How does it work (step by step)?*
 - He loads the image file by creating the function file = os.path.join(main_dir, "data", file)
-- He prevents error messages that crash the game if the image file is missing with try:
+- He prevents error messages that crash the game if the image file is missing with 
+    try:
         surface = pygame.image.load(file)
     except pygame.error:
         raise SystemExit(f'Could not load image "{file}" {pygame.get_error()}')
